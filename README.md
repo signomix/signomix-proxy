@@ -1,6 +1,6 @@
 # signomix-proxy
 
-Reverse proxy and API Gateway for [Signomix](https://github.com/gskorupa/signomix) platform.
+Reverse proxy and API Gateway for [Signomix](https://github.com/signomix/signomix) platform.
 
 |Version|Description|
 |---|---|
