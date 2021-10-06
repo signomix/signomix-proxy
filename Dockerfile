@@ -1,13 +1,26 @@
 FROM nginx:alpine
 
-### certificate and key
-### FOR PRODUCTION - UNCOMMENT CHANGE SOURCE PATHS BELOW
+##### DOMAIN argument is mandatory
+#
+ARG DOMAIN
+RUN test -n "$DOMAIN" || (echo "ERROR! --build-arg DOMAIN argument not set" && false)
 
-# COPY /my-certificates/my-bundle.crt /etc/nginx/signomix.crt
-# COPY /my-certificates/my-key.key /etc/nginx/signomix.key
+##### Generate self signed certificate for domain name set with --build-arg HOSTNAME argument
+#
+RUN apk upgrade --update-cache --available && \
+    apk add openssl && \
+    rm -rf /var/cache/apk/* && \ 
+    mkdir /etc/nginx/keys && \
+    openssl req -x509 -nodes -subj '/CN='${DOMAIN}} -newkey rsa:4096 -keyout /etc/nginx/keys/signomix.key -out /etc/nginx/keys/signomix.crt -days 365
 
-### configuration
-### 
+##### Show resulting certificate
+#
+#RUN openssl x509 -text -noout -in /etc/nginx/keys/signomix.crt
 
-COPY nginx-local.conf /etc/nginx/nginx.conf
-#COPY nginx.conf /etc/nginx/nginx.conf
+##### Copy NGINX configuration
+#
+COPY nginx.conf /etc/nginx/nginx.conf
+
+##### Replace localhost with the domain name
+# 
+RUN sed -i 's/localhost/'${DOMAIN}'/g' /etc/nginx/nginx.conf
