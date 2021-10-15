@@ -20,7 +20,7 @@ $ docker push repository_name:tag
 e.g.
 
 ```shell
-$ docker build --build-arg DOMAIN=localhost -t my-repo/signomix-proxy:1.0.0 -t my-repo/signomix-proxy:latest .
+$ docker build --build-arg DOMAIN=localhost -t my-repo/signomix-proxy:1.0.0 .
 $ docker push my-repo/signomix-proxy --all-tags
 ```
 
