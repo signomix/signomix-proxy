@@ -25,6 +25,14 @@ RUN openssl x509 -text -noout -in /etc/nginx/keys/signomix.crt | grep "Issuer:"
 #
 COPY nginx.conf /etc/nginx/nginx.conf
 
+#### Copy ststic files
+COPY static/main/js/* /var/www/public/main/js/
+COPY static/main/resources/* /var/www/public/main/resources/
+COPY static/app/js/* /var/www/public/app/js/
+COPY static/app/resources/* /var/www/public/app/resources/
+RUN chown -R "$USER":www-data /var/www/public
+RUN chmod -R 0755 /var/www/public
+
 ##### Replace localhost with the domain name
 # 
 RUN if [ ! -z "$DOMAIN" ]; then export MYDOMAIN="${DOMAIN}"; else export MYDOMAIN="localhost" ; fi && \
