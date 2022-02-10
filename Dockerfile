@@ -25,7 +25,7 @@ RUN openssl x509 -text -noout -in /etc/nginx/keys/signomix.crt | grep "Issuer:"
 #
 COPY nginx.conf /etc/nginx/nginx.conf
 
-#### Copy ststic files
+#### Copy static files
 COPY static/main/js/* /var/www/public/main/js/
 COPY static/main/resources/* /var/www/public/main/resources/
 COPY static/app/js/* /var/www/public/app/js/
