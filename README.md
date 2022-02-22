@@ -5,6 +5,7 @@ Reverse proxy and API Gateway for [Signomix](https://github.com/signomix/signomi
 |Version|Description|
 |---|---|
 |1.0.0| Initial release|
+|1.1.2| |
 
 
 ## Building and publishing the docker image
@@ -20,7 +21,7 @@ $ docker push repository_name:tag
 e.g.
 
 ```shell
-$ docker build --build-arg DOMAIN=localhost -t my-repo/signomix-proxy:1.0.0 .
+$ docker build --build-arg DOMAIN=localhost -t my-repo/signomix-proxy:1.1.2 .
 $ docker push my-repo/signomix-proxy --all-tags
 ```
 
