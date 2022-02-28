@@ -4,6 +4,7 @@ FROM nginx:alpine
 #
 ARG DOMAIN
 ENV MYDOMAIN=localhost
+RUN echo ${DOMAIN}
 
 #RUN test -n "$DOMAIN" || (echo "ERROR! --build-arg DOMAIN argument not set" && false)
 RUN if [ ! -z "$DOMAIN" ]; then export MYDOMAIN="${DOMAIN}"; else export MYDOMAIN="localhost" ; fi && \
